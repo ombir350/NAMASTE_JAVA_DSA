@@ -1,21 +1,20 @@
 import java.util.*;
-public class ombir{
-    public static void queens(boolean[][] board,int row){
+public class QueensAndCount{
+    public static int queens(boolean[][] board,int row){
         if (row==board.length){
             display(board);
             System.out.println();
-            return;
+            return 1;
         }
+        int count=0;
         for (int col=0;col<board.length;col++){
             if (isSafe(board,row,col)){
-                //put the queen.
                board[row][col]=true;
-               //solve next row.   
-               queens(board, row + 1);
-               //remove the queen.
+               count=count+queens(board,row+1);
                board[row][col]=false;
             }
         }
+        return count;
     }
     private static void display(boolean[][] board){
         for (boolean[] row:board){
@@ -55,7 +54,8 @@ public class ombir{
     }
     public static void main(String[]args){
        int n=4;
-       boolean[][] board=new boolean[n][n]; 
-       queens(board,0);
+       boolean[][] board=new boolean[n][n];
+       int  count=queens(board,0);
+       System.out.println("Total solution: "+count);
     }
 }

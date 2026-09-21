@@ -1,5 +1,5 @@
 import java.util.*;
-public class ombir{
+public class N_Queens{
     public static void queens(boolean[][] board,int row){
         if (row==board.length){
             display(board);
